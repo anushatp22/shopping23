@@ -3,6 +3,8 @@
 <form method='post' action='{% url 'addcategory_action' %}'>
     {% csrf_token %}
     <table>
+
+<th>CLONE</th>
     <tr>
     <td>ENTER</td>
     <td><input type='text' name='category'></td>
