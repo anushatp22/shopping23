@@ -77,6 +77,7 @@ return true;
 <form method='post' action='{% url 'cartaction' %}'>
 {% csrf_token %}
 		<table>	
+			<th>CART</th>
 			{% for b in buy %}
 			<input type='hidden' id='price' value='{{b.price}}'>
 			<input type='hidden' name='id' value='{{b.id}}'>
