@@ -78,6 +78,7 @@ return true;
 {% csrf_token %}
 		<table>	
 			<th>CART</th>
+			<th>ADD</th>
 			{% for b in buy %}
 			<input type='hidden' id='price' value='{{b.price}}'>
 			<input type='hidden' name='id' value='{{b.id}}'>
