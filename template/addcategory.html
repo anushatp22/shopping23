@@ -1,0 +1,48 @@
+{% extends 'adminbase.html'%}
+{% block content %}
+<form method='post' action='{% url 'addcategory_action' %}'>
+    {% csrf_token %}
+    <table>
+    <tr>
+    <td>ENTER</td>
+    <td><input type='text' name='category'></td>
+    </tr>
+    <tr>
+    <td><input type='submit' value='add'></td>
+    </tr>
+    </table>
+    </form>
+    </body>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+    alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+<html>
+<body>
+<form method='post' action='{% url 'addcategory_action' %}'>
+{% csrf_token %}
+<table>
+<tr>
+<td>ENTER</td>
+<td><input type='text' name='category'></td>
+</tr>
+<tr>
+<td><input type='submit' value='add'></td>
+</tr>
+</table>
+</form>
+</body>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+{% endif %}
+</html>

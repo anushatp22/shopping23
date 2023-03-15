@@ -1,0 +1,42 @@
+<html>
+	<body>
+		<table>
+			<tr>
+			<th>Buyer Name</th>
+			<th>Shipping Address</th>
+			<th>Quantity</th>
+			<th>Phone</th>
+			<th>Total Price</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Product Id</th>		
+			<th>Status</th>
+			</tr>
+			{% for o in ord %}
+			<tr>
+			<td>{{o.buyerid.name}}</td>
+			<td>{{o.shippingaddress}}</td>
+			<td>{{o.quantity}}</td>
+			<td>{{o.phone}}</td>
+			<td>{{o.totalprice}}</td>
+			<td>{{o.date}}</td>
+			<td>{{o.time}}</td>
+			<td>{{o.productid_id}}</td>
+			<td>{{o.status}}</td>
+{% if o.status == 'pending' %}
+<td><a href='{% url 'approveorder' o.id %}'>Approve</td>
+<td><a href='{% url 'rejectorder' o.id %}'>Reject</td>
+{% endif %}
+{% if o.status == 'approved' %}
+<td><a href='{% url 'addtrackingdetails' o.id %}'>Tracking Details</td>
+{% endif %}
+{% if o.status == 'rejected' %}
+<td><a href='{% url 'confirmcancelorder' o.id %}'>Confirm Cancel</td>
+{% endif %}
+
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>
+			

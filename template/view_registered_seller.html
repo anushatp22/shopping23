@@ -1,0 +1,33 @@
+<html>
+	<body>
+		<table>
+			<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Gender</th>
+			<th>Phone</th>
+			<th>Dob</th>
+			<th>Country</th>
+			<th>Image</th>
+			<th>Username</th>
+			<th>Password</th>
+<th>Status</th>
+			</tr>
+			{% for s in sel %}
+			<tr>
+			<td>{{s.na}}</td>
+			<td>{{s.ad}}</td>
+			<td>{{s.ge}}</td>
+			<td>{{s.ph}}</td>
+			<td>{{s.do}}</td>
+			<td>{{s.co}}</td>
+			<td>{{s.im}}</td>
+			<td>{{s.us}}</td>
+			<td>{{s.pa}}</td>
+			<td>{{s.status}}</td>
+			<td><a href = '{% url 'approve' s.id %}'>Approve</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>

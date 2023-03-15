@@ -1,0 +1,114 @@
+<html>
+<script type='text/javascript'>
+	function validation()
+	{
+		var alpha=/^[A-Za-z]+$/;
+		var num=/^[0-9]+$/;
+	var product=document.getElementById('productname');
+	var price=document.getElementById('price');
+	var image=document.getElementById('image');
+	var details=document.getElementById('details');
+	var stock=document.getElementById('stock');
+	var category=document.getElementById('category');
+
+if (product.value.length==0)
+{
+	alert('enter product name');
+	return false;
+}
+else if(!product.value.match(alpha))
+{
+	alert('enter valid product');
+	product.focus();
+	return false
+}
+else if(price.value.length==0)
+{
+	alert('enter price');
+	return false;
+}
+else if(!price.value.match(num))
+{
+	alert('enter valid price');
+	price.focus();
+	return false;
+}
+else if(image.value.length==0)
+{
+	alert('choose image');
+	return false;
+}
+else if(details.value.length==0)
+{
+	alert('enter details');
+	return false;
+}
+else if(stock.value.length==0)
+{
+	alert('enter stock');
+	return false;
+}
+else if(!stock.value.match(num))
+{
+	alert('enter valid stock');
+	return false
+}
+else if(category.value.length==0)
+{
+	alert('choose category');
+	return false;
+}
+else
+{
+	return true;
+}
+}
+</script>
+	
+	<body>
+<form method='post' action='{% url 'add_product' %}' enctype='multipart/form-data'>
+{% csrf_token %}
+		<table>
+
+			<tr>
+			<td>Product Name</td>
+			<td><input type='text' name='productname' id='productname'></td>
+			</tr>
+			<tr>
+			<td>Price</td>
+			<td><input type='text' name='price' id='price'></td>
+			</tr>
+			<tr>
+			<td>Image</td>
+			<td><input type='file' name='image' id='image'></td>
+			</tr>
+			<tr>
+			<td>Details</td>
+			<td><input type='text' name='details' id='details'></td>
+			</tr>
+			<tr>
+			<td>Stock</td>
+			<td><input type='text' name='stock' id='stock'></td>
+			</tr>
+			<tr>
+			
+			<td>Category</td>
+			<td><select name='category' id='category'>
+			<option value=''>--select--</option>
+			{% for c in cat %}
+			<option value='{{c.id}}'>{{c.category}}</option>
+			{% endfor %}
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><input type='submit' value='add' onclick='return validation()'></td>
+			</tr>
+		
+		</table>
+</form>
+	</body>
+</html>
+
+				

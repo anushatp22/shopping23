@@ -1,0 +1,134 @@
+<html>
+<script type="text/javascript">
+
+	function validation()
+	{
+
+		var alpha=/^[a-zA-Z]+$/;
+		var num=/^[0-9]+$/;
+
+		var name=document.getElementById("name");
+		var address=document.getElementById("address");
+		var gender=document.myform.gender;
+		var dob=document.getElementById("dob");
+		var phonenumber=document.getElementById("phonenumber");
+		var country=document.getElementById("country");
+		var username=document.getElementById("username");
+		var password=document.getElementById("password");
+		
+		
+		if(name.value.length==0)
+		{
+			alert("enter a name");
+     			return false;
+		}
+		else if(!name.value.match(alpha))
+		{
+			alert("enter a valid name");
+			name.focus();
+			return false;
+		}
+		else if(address.value.length==0)
+		{
+			alert("enter address");
+			return false;
+		}
+		if (gender[0].checked==false && gender[1].checked==false)
+		{
+			alert("enter valid gender");
+			return false;
+		}
+		else if(dob.value.length==0)
+		{
+			alert("enter dob");
+			return false;
+		}
+		else if(phonenumber.value.length==0)
+		{
+			alert("enter phone number");
+			return false;
+		}
+		else if(!phonenumber.value.match(num))
+		{
+			alert("enter valid phonenumber");
+			phonenumber.focus();
+			return false;
+		}
+		else if(country.value.length==0)
+{
+			alert("enter country");
+			return false;
+		}
+		else if(username.value.length==0)
+		{
+			alert("enter username");
+			return false;
+		}
+		else if(password.value.length==0)
+		{
+			alert("enter password");
+			return false;
+		}
+		
+		else
+			{
+			return true;
+			}
+}
+</script>	
+<body>
+<form method='post' action='{% url 'register_action' %}'name='myform'>
+{% csrf_token %}
+<table>
+<tr>
+<td>NAME</td>
+<td><input type='text' name='name' id='name'></td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td><textarea name='address' id='address' cols='20' rows='5'></textarea></td>
+</tr>
+<tr>
+<td>GENDER</td>
+<td><input type = 'radio' name='gender' id='gender' value='male'>MALE</td>
+<td><input type='radio' name='gender' id='gender' value'female'>FEMALE</td>
+</tr>
+<tr>
+<td>DATE OF BIRTH</td>
+<td><input type='date' name='dateofbirth' id='dob'></td>
+</tr>
+<tr>
+<td>PHONE NUMBER</td>
+<td><input type='text' name='phone' id='phonenumber'></td>
+</tr>
+<tr>
+<td>COUNTRY</td>
+<td><select name='country' id='country'>
+<option value=''>--select--</option>
+<option value='india'>INDIA</option>
+<option value='italy'>ITALY</option>
+</select>
+</td>
+<tr>
+<td>USERNAME</td>
+<td><input type='text' name='username' id='username'></td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td><input type='password' name='password' id='password'></td>
+</tr>
+<tr>
+<td></td>
+<td><input type='submit' value='REGISTER' onclick='return validation()'></td>
+</tr>
+</table>
+</form>
+</body>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+{% endif %}
+</html>

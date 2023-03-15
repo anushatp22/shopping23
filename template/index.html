@@ -1,0 +1,16 @@
+<li><a href = '{% url 'login' %}'>LOGIN</a></li>
+<li><a href = '{% url 'register' %}'>REGISTER</a></li>
+<li><a href = '{% url 'login_register' %}'>Seller REGISTER</a></li>
+<html>
+<body>
+<table>
+</table>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+{% endif %}
+</html>
+

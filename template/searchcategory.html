@@ -1,0 +1,59 @@
+<html>
+<script type='text/javascript'>
+	function validation()
+	{
+		var alpha=/^[a-zA-Z]+$/;
+		var num=/^[0-9]+$/;
+	var searchcategory=document.getElementById('searchcategory')
+	var price=document.getElementById('price')
+	
+	if(searchcategory.value.length==0)
+	{
+		alert('choose Category');
+		return false;
+	}
+	else if(price.value.length==0)
+	{
+		alert('enter price');
+		return false;
+	}
+	else if(!price.value.match(num))
+	{
+		alert('enter valid price');
+		price.focus();
+		return false;
+	}
+	else
+		{
+		return true;
+		}
+}
+</script>
+<body>
+<form method='post' action='{% url 'searchcategoryaction' %}'>
+{% csrf_token %}
+<table>
+
+<tr>
+<td>Search Category</td>
+<td><select name='searchcategory' id='searchcategory'>
+
+<option value =''>--select--</option>
+{% for c in cat %}
+<option value ='{{c.id}}'>{{c.category}}</option>
+{% endfor %}
+</select>
+</td>
+</tr>
+<tr>
+<td>Price</td>
+<td><input type='text' name='price' id='price'></td>
+</tr>
+<tr>
+<td><input type='submit' value='submit' onclick='return validation()'></td>
+
+</tr>
+</table>
+</form>
+</body>
+</html>

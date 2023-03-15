@@ -1,0 +1,35 @@
+<html>
+	<body>
+		<table>
+			<tr>
+				<th>Product</th>	
+				<th>Price</th>
+				<th>Image</th>
+				<th>Stock</th>
+				<th>Details</th>
+				<th>Category</th>
+				<th>Seller name</th>
+			</tr>
+			{% for p in pro %}
+			<tr>
+				<td>{{p.productname}}</td>
+				<td>{{p.price}}</td>
+				<td><img src ='{{p.image.url}}' height='100 px' width='100 px'></td>
+				<td>{{p.stock}}</td>
+				<td>{{p.details}}</td>
+				<td>{{p.category.category}}</td>
+				<td>{{p.sellerid.na}}</td>
+				<td><a href ='{% url 'addtocart' p.id %}'>Add to Cart</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+{% if messages %}
+{% for msg in messages %}
+<script>
+alert('{{msg}}')
+</script>
+{% endfor %}
+{% endif %}
+<td><a href='{% url 'viewcart' %}'>View Cart</a></td>
+	</body>
+</html>	

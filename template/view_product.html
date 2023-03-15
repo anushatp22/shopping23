@@ -1,0 +1,26 @@
+<html>
+<body>
+<table>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Image</th>
+<th>Details</th>
+<th>Stock</th>
+<th>Category</th>
+</tr>
+{% for p in pro %}
+<tr>
+<td>{{p.productname}}</td>
+<td>{{p.price}}</td>
+<td><img src='{{p.image.url}}' height="100px" width='100px'></td>
+<td>{{p.stock}}</td>
+<td>{{p.details}}</td>
+<td>{{p.category.category}}</td>
+<td><a href ='{% url 'editproduct' p.id %}'>Edit</td>
+<td><a href='{% url 'deleteproduct' p.id %}'>Delete</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

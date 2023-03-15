@@ -1,0 +1,138 @@
+<html>
+<script type='text/javascript'>
+	function validation()
+	{
+		var alpha=/^[a-zA-Z]+$/;
+		var num=/^[0-9]+$/;
+
+	var name=document.getElementById('name');
+	var address=document.getElementById('address');
+	var gender=document.myform.gender;
+	var phone=document.geElementById('phone');
+	var dob=document.getElementById('dob');
+	var country=document.getElementById('country');
+	var username=document.getElementById('username');
+	var password=document.getElementById('password');
+
+if(name.value.length==0)
+{
+	alert('enter name');
+	return false;
+}
+else if(!name.value.match(alpha))
+{
+	alert('enter valid name');
+	name.focus();
+	return false;
+}
+else if(address.value.length==0)
+{
+	alert('enter address');
+	return false;
+}
+else if(gender[0].checked==false && gender[1].checked==false)
+{
+	alert('choose gender');
+	return false;
+}
+else if(phone.value.length==0)
+{
+	alert('enter phone');
+	return false;
+}
+else if(!phone.value.match(num))
+{
+	alert('enter phone');
+	phone.focus();
+	return false;
+}
+else if(country.value.length==0)
+{
+	alert('choose country');
+	return false;
+}
+else if(username.value.length==0)
+{
+	alert('enter username');
+	return false;
+}
+else if(password.value.length==0)
+{
+	alert('enter password');
+	return false;
+}
+else
+{
+return true;
+}
+}
+</script>
+
+
+	<body>
+<form method='post' action="{% url 'updateaction' %}" name='myform'>
+{% csrf_token %}
+		<table>
+			{% for i in buy %}
+			<tr>
+			<td>Name</td>
+			<td><input type='text' name='name' value='{{i.name}}' id='name'></td>
+			</tr>
+			<tr>
+			<td>Address</td>
+			<td><textarea name='address' cols='19' rows='5' id='address'>{{i.address}}</textarea></td>
+			</tr>
+			<tr>
+			<td>Gender</td>
+			<td>
+			{% if i.gender == male %}
+			<input type='radio' name='gender' value='male' id='gender' checked='true'>Male
+			<input type='radio' name='gender'value='female'>	Female
+			{% else %}
+			<input type='radio' name='gender'value='male'>Male
+			<input type='radio' name='gender' id='gender' value='female' checked='true'>Female</td>
+			{% endif %}
+			</tr>
+			<tr>
+			<td>Phone</td>
+			<td><input type='text' name='phone' value='{{i.phone}}' id='phone'></td>
+			</tr>
+			<tr>
+			<td>DOB</td>
+			<td><input type='date' name='dob' value='{{i.Date}}' id='dob'></td>
+			</tr>
+			<tr>
+			<td>Country</td>
+			<td>
+			<select name='country' id='country'>
+			<option value='{{i.id}}'>{{i.country}}</option>
+			<option value ='india'>India</option>
+			<option value ='italy'>Italy</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>Username</td>
+			<td><input type='text' name='username' value='{{i.user}}' id='username'></td>
+			</tr>
+			<td>Password</td>
+			<td><input type='password' name ='password' value='{{i.password}}' id='password'></td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><input type='submit' value='update' onclick='return validation()'></td>
+			</tr>
+			{% endfor %}
+		</table>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

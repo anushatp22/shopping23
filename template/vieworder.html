@@ -1,0 +1,36 @@
+<html>
+	<body>
+		<table>
+			<tr>
+			<th>Seller Name</th>
+			<th>Image</th>
+			<th>Shipping Address</th>
+			<th>Quantity</th>
+			<th>Phone Number</th>
+			<th>Total Price</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Status</th>
+			</tr>
+			{% for o in order %}
+			<tr>
+			<td>{{o.sellerid.na}}</td>
+			<td><img src='{{o.productid.image.url}}' height='100 px' weight='100 px' alt='no pic'></td>
+			<td>{{o.shippingaddress}}</td>
+			<td>{{o.quantity}}</td>
+			<td>{{o.phone}}</td>
+			<td>{{o.totalprice}}</td>
+			<td>{{o.date}}</td>
+			<td>{{o.time}}</td>
+			<td>{{o.status}}</td>
+			{% if o.status == 'pending' %}
+				<td><a href='{% url 'cancelorder' o.id%}'>Cancel</td>
+			{% endif %}
+{% if o.status == 'approved' %}
+<td><a href='{% url 'trackingdetailsbuyer' o.id %}'>Tracking Details</td>
+{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>
